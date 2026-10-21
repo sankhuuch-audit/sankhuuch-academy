@@ -1,0 +1,42 @@
+---
+layout: layouts/base.njk
+title: Холбоо барих
+description: Санхүүч-Аудит Академи, “Санхүүч-Аудит” ХХК-ийн хаяг, утас, имэйл. 604 тоот, Шинэ тэрэг плаза, Нарны зам-10, Сүхбаатар дүүрэг, Улаанбаатар хот.
+permalink: /holboo-barih/
+---
+{%- from "partials/macros.njk" import pageHero %}
+{{ pageHero("Холбоо барих", "Холбоо барих", "Сургалт, бүртгэл, төлбөрийн талаар доорх хаягаар холбогдоно уу.") }}
+
+<section class="section">
+  <div class="container contact-grid">
+    <div class="contact-card">
+      <p class="contact-label">Утас</p>
+      <p class="contact-value">{% for p in site.phones %}<a href="{{ p | telHref }}">{{ p }}</a>{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
+    </div>
+    <div class="contact-card">
+      <p class="contact-label">Имэйл</p>
+      <p class="contact-value"><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+      <button type="button" class="link-small copy-btn" data-copy="{{ site.email }}">Имэйл хаягийг хуулах</button>
+    </div>
+    <div class="contact-card">
+      <p class="contact-label">Хаяг</p>
+      <p class="contact-value">{{ site.address }}</p>
+      {%- if site.map_url %}<a class="link-small" href="{{ site.map_url }}" rel="noopener" target="_blank">Газрын зураг дээр харах</a>{% endif %}
+    </div>
+    <div class="contact-card">
+      <p class="contact-label">Байгууллага</p>
+      <p class="contact-value"><a href="{{ site.main_url }}/">{{ site.company }}</a></p>
+      {%- if site.youtube_channel %}<a class="link-small" href="{{ site.youtube_channel }}" rel="noopener" target="_blank">YouTube суваг</a>{% endif %}
+    </div>
+  </div>
+  {%- if site.map_embed %}
+  <div class="container">
+    <div class="map-wrap">
+      <iframe class="map-frame" src="{{ site.map_embed }}" title="“Санхүүч-Аудит” ХХК-ийн байршил: Шинэ тэрэг плаза" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+    <p class="map-caption">Шинэ тэрэг плаза, 604 тоот. {% if site.map_url %}<a href="{{ site.map_url }}" rel="noopener" target="_blank">Google Maps дээр нээж, чиглэл авах</a>{% endif %}</p>
+  </div>
+  {%- endif %}
+</section>
+
+{% include "partials/contact-band.njk" %}

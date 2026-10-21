@@ -1,0 +1,73 @@
+---
+layout: layouts/base.njk
+title: Хэрхэн суралцах вэ
+description: Санхүүч-Аудит Академид бүртгүүлэх, төлбөр төлөх, Google Classroom-оор хичээлээ үзэх заавар.
+permalink: /hereh-suraltsah/
+---
+{%- from "partials/macros.njk" import pageHero, steps %}
+{{ pageHero("Суралцах заавар", "Хэрхэн суралцах вэ", "Бүртгүүлэхээс эхлээд хичээлээ үзэх хүртэлх алхам. Бичлэгт хичээлүүд Google Classroom дээр байрлах тул Google (Gmail) хаяг шаардлагатай.") }}
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>4 алхам</p>
+      <h2>Бүртгүүлэхээс суралцах хүртэл</h2>
+    </div>
+    {{ steps() }}
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="container ac-two">
+    <div>
+      <div class="section-head">
+        <p class="eyebrow"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>Google Classroom</p>
+        <h2>Хичээлдээ хэрхэн нэвтрэх вэ</h2>
+      </div>
+      <ol class="guide-list">
+        <li><strong>Урилгаа нээнэ</strong><span>Төлбөр орсны дараа таны Google хаягт Google Classroom-ийн урилга (Class invitation) имэйл ирнэ. Имэйл доторх «Join» товчийг дарна.</span></li>
+        <li><strong>Google хаягаараа нэвтэрнэ</strong><span>Компьютерээс <a href="https://classroom.google.com" rel="noopener" target="_blank">classroom.google.com</a> хаягаар, утас, таблетаас Google Classroom аппаар бүртгүүлсэн Google хаягаараа нэвтэрнэ.</span></li>
+        <li><strong>Хичээлээ үзнэ</strong><span>Ангийн «Classwork» хэсэгт хичээлүүд дарааллаараа байрлана. Бичлэг, материалыг өөрт тохирох цагтаа үзнэ.</span></li>
+      </ol>
+      <p class="ac-apps">
+        <a class="btn btn-outline btn-sm" href="https://play.google.com/store/apps/details?id=com.google.android.apps.classroom" rel="noopener" target="_blank">Android апп</a>
+        <a class="btn btn-outline btn-sm" href="https://apps.apple.com/app/google-classroom/id924620788" rel="noopener" target="_blank">iPhone, iPad апп</a>
+      </p>
+    </div>
+    <div class="ac-side-stack">
+      <div class="side-card">
+        <p class="side-label">Шаардлагатай зүйлс</p>
+        <ul class="check-list">
+          <li>Google (Gmail) хаяг. Байхгүй бол <a href="https://accounts.google.com/signup" rel="noopener" target="_blank">үнэгүй нээж</a> болно</li>
+          <li>Интернэт холболт</li>
+          <li>Компьютер, таблет эсвэл ухаалаг утас</li>
+          <li>Zoom-оор шууд явагдах сургалтад Zoom програм</li>
+        </ul>
+      </div>
+      <div class="side-card">
+        <p class="side-label">Хичээл харагдахгүй байна уу?</p>
+        <ul class="dot-list">
+          <li>Урилга ирээгүй бол имэйлийнхээ «Spam» хавтсыг шалгана уу.</li>
+          <li>Өөр Google хаягаар нэвтэрсэн бол хичээл харагдахгүй. Профайл зургаа дарж бүртгүүлсэн хаягаа сонгоно уу.</li>
+          <li>Асуудал шийдэгдэхгүй бол <a href="mailto:{{ site.email }}">{{ site.email }}</a> хаягаар бичих эсвэл <a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a> утсаар холбогдоно уу.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow">
+    <div class="section-head">
+      <p class="eyebrow"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>Байгууллагад</p>
+      <h2>Байгууллагаар бүртгүүлэх</h2>
+    </div>
+    <div class="prose">
+      <p>Бүртгэлийн маягтад «Байгууллага» гэж сонгоод байгууллагын нэр, регистрийн дугаар, оролцогчийн тоогоо бичнэ үү. Нэхэмжлэх, И-баримтыг байгууллагын нэрээр гаргана.</p>
+      <p>Оролцогч бүрийн нэр, Google хаягийг <a href="mailto:{{ site.email }}">{{ site.email }}</a> хаяг руу имэйлээр илгээнэ. Урилга оролцогч бүрийн Google хаяг руу тус тусад нь очно.</p>
+    </div>
+    <p class="steps-cta"><a class="btn btn-primary" href="/burtguuleh/?payer=org">Байгууллагаар бүртгүүлэх</a></p>
+  </div>
+</section>
+
+{% include "partials/contact-band.njk" %}

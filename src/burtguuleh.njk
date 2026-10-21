@@ -1,0 +1,98 @@
+---
+layout: layouts/base.njk
+title: Сургалтад бүртгүүлэх
+description: Санхүүч-Аудит Академийн сургалтад бүртгүүлэх маягт. Бүртгүүлсний дараа төлбөрийн нэхэмжлэх имэйлээр ирж, төлбөр орсны дараа Google Classroom-ийн урилга ирнэ.
+permalink: /burtguuleh/
+---
+{%- from "partials/macros.njk" import pageHero %}
+{%- set open = collections.courses | whereDataNot("status", "closed") %}
+{{ pageHero("Бүртгэл", "Сургалтад бүртгүүлэх", "Маягтыг бөглөж илгээнэ үү. Бид төлбөрийн нэхэмжлэхийг таны имэйл хаяг руу илгээх бөгөөд төлбөр орсны дараа Google Classroom-ийн урилга ирнэ.") }}
+
+<section class="section">
+  <div class="container quote-layout">
+    <form class="quote-form" id="reg-form" novalidate data-company-email="{{ site.email }}">
+
+      <fieldset class="q-group">
+        <legend><span class="q-step">1</span>Сургалт</legend>
+        <label class="q-field"><span>Сургалтаа сонгоно уу <b aria-hidden="true">*</b></span>
+          <select id="r-course" name="course" required>
+            <option value="">Сонгоно уу</option>
+            {%- for c in open %}
+            <option value="{{ c.data.title }}" data-key="{{ c.data.courseKey }}" data-status="{{ c.data.status or 'open' }}" data-price="{{ c.data.price | money }}">{{ c.data.title }}{% if c.data.price | money %} · {{ c.data.price | money }}{% endif %}{% if c.data.status == "soon" %} (удахгүй){% endif %}</option>
+            {%- endfor %}
+            <option value="Удахгүй нээгдэх сургалтын мэдээлэл авах" data-key="interest" data-status="interest">Удахгүй нээгдэх сургалтын мэдээлэл авах</option>
+          </select></label>
+        <p class="q-hint" id="r-course-note" hidden></p>
+      </fieldset>
+
+      <fieldset class="q-group">
+        <legend><span class="q-step">2</span>Суралцагч</legend>
+        <div class="q-grid">
+          <label class="q-field"><span>Овог, нэр <b aria-hidden="true">*</b></span>
+            <input id="r-name" name="name" type="text" autocomplete="name" required></label>
+          <label class="q-field"><span>Утас <b aria-hidden="true">*</b></span>
+            <input id="r-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></label>
+          <label class="q-field q-span2"><span>Google (Gmail) хаяг <b aria-hidden="true">*</b></span>
+            <input id="r-email" name="email" type="email" autocomplete="email" placeholder="name@gmail.com" aria-describedby="r-email-attn" required></label>
+        </div>
+        <p class="q-attn" id="r-email-attn"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 5.6v5.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="10" cy="14.2" r="1.1" fill="currentColor"/></svg><span><strong>Google хаягаа зөв бичнэ үү.</strong> Төлбөрийн нэхэмжлэх болон Google Classroom-ийн урилга энэ хаяг руу илгээгдэнэ. Хичээлийг зөвхөн энэ хаягаар нэвтэрч үзнэ.</span></p>
+      </fieldset>
+
+      <fieldset class="q-group">
+        <legend><span class="q-step">3</span>Төлбөр төлөгч</legend>
+        <div class="q-checks" role="radiogroup" aria-label="Төлбөр төлөгч">
+          <label class="q-check"><input type="radio" name="payer" value="Хувь хүн" checked><span>Хувь хүн</span></label>
+          <label class="q-check"><input type="radio" name="payer" value="Байгууллага"><span>Байгууллага</span></label>
+        </div>
+        <div class="q-grid q-grid-3" id="r-org" hidden>
+          <label class="q-field"><span>Байгууллагын нэр <b aria-hidden="true">*</b></span>
+            <input id="r-org-name" name="org_name" type="text" autocomplete="organization" data-org required disabled></label>
+          <label class="q-field"><span>Регистрийн дугаар <b aria-hidden="true">*</b></span>
+            <input id="r-org-reg" name="org_reg" type="text" inputmode="numeric" autocomplete="off" data-org required disabled></label>
+          <label class="q-field"><span>Оролцогчийн тоо <b aria-hidden="true">*</b></span>
+            <input id="r-count" name="count" type="number" min="1" max="500" step="1" value="1" inputmode="numeric" data-org required disabled></label>
+        </div>
+        <p class="q-hint" id="r-org-hint" hidden>Оролцогч бүрийн нэр, Google хаягийг дараа нь {{ site.email }} хаяг руу имэйлээр илгээж болно.</p>
+        <details class="q-more">
+          <summary>Нэмэлт мэдээлэл бичих (заавал биш)</summary>
+          <label class="q-field"><span class="visually-hidden">Нэмэлт мэдээлэл</span>
+            <textarea id="r-notes" name="notes" rows="3" placeholder="Асуух зүйл, нэхэмжлэх хүлээн авах өөр имэйл хаяг гэх мэт"></textarea></label>
+        </details>
+        <label class="q-check q-check-line"><input id="r-consent" type="checkbox" name="consent" value="Тийм" required><span>Миний оруулсан мэдээллийг сургалтын бүртгэл, төлбөрийн нэхэмжлэх, И-баримт гаргах зорилгоор ашиглахыг зөвшөөрч байна <b aria-hidden="true">*</b></span></label>
+        <label class="q-hp" aria-hidden="true">Энэ талбарыг хоосон орхино уу<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </fieldset>
+
+      <p class="q-error q-error-box" id="r-error" role="alert" hidden></p>
+      <div class="q-actions">
+        <button class="btn btn-primary" type="submit" id="r-submit">Бүртгүүлэх</button>
+        <p class="q-note">Бүртгэл шууд манай имэйлд ирнэ. Сургалтад хамрагдах эрх төлбөр орсны дараа нээгдэнэ.</p>
+      </div>
+    </form>
+
+    <div class="quote-done" id="reg-done" hidden tabindex="-1">
+      <p class="eyebrow">Бүртгэл хүлээн авлаа</p>
+      <h2>Баярлалаа!</h2>
+      <p id="reg-done-pay">Таны бүртгэлийг хүлээн авлаа. Төлбөрийн нэхэмжлэхийг <strong data-done-email></strong> хаяг руу удахгүй илгээнэ. Төлбөр орсны дараа Google Classroom-ийн урилга мөн энэ хаяг руу ирнэ.</p>
+      <p id="reg-done-soon" hidden>Таны бүртгэлийг хүлээн авлаа. Сургалт нээгдэх үед бид <strong data-done-email></strong> хаяг руу эсвэл утсаар тантай холбогдоно.</p>
+      <p class="q-note">Имэйл ирээгүй бол «Spam» хавтсаа шалгана уу. Асуух зүйл байвал <a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a> утсаар холбогдоно уу.</p>
+      <p class="hero-actions"><a class="btn btn-outline" href="/hereh-suraltsah/">Хэрхэн суралцах вэ</a> <a class="btn btn-outline" href="/">Нүүр хуудас</a></p>
+    </div>
+
+    <aside class="quote-aside">
+      <h2 class="h-small">Бүртгэлийн дараа</h2>
+      <ol class="quote-steps">
+        <li><strong>Нэхэмжлэх ирнэ</strong><span>Төлбөрийн нэхэмжлэхийг таны имэйл хаяг руу илгээнэ.</span></li>
+        <li><strong>Төлбөрөө төлнө</strong><span>Нэхэмжлэхэд заасан дансаар эсвэл QPay-ээр төлнө. И-баримт олгоно.</span></li>
+        <li><strong>Урилга ирнэ</strong><span>Төлбөр орсны дараа Google Classroom-ийн урилга таны Google хаяг руу ирж, хичээлээ үзэж эхэлнэ.</span></li>
+      </ol>
+      <div class="quote-contact">
+        <p class="contact-label">Шууд холбогдох</p>
+        <p>{% for p in site.phones %}<a href="{{ p | telHref }}">{{ p }}</a>{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
+        <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<script type="application/json" id="course-data">{{ collections.courses | courseIndex | safe }}</script>
+<script src="/assets/js/register.js" defer></script>

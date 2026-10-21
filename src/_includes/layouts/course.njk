@@ -1,0 +1,141 @@
+---
+layout: layouts/base.njk
+bodyClass: page-course
+---
+{%- from "partials/macros.njk" import ytPlayer, steps %}
+{%- set st = options.status | findBy("key", status or "open") %}
+{%- set fm = options.format | findBy("key", format) %}
+{%- set lv = options.level | findBy("key", level) %}
+{%- set vid = intro_video | youtubeId %}
+{%- set regUrl = "/burtguuleh/?course=" + courseKey %}
+
+<section class="course-hero">
+  <div class="container course-hero-grid">
+    <div class="course-hero-copy">
+      <nav class="crumbs" aria-label="Байршил"><a href="/surgaltuud/">Сургалтууд</a><span aria-hidden="true">/</span><span>{{ title }}</span></nav>
+      <p class="course-tags">
+        {%- if st %}<span class="tag tag-{{ st.key }}">{{ st.label }}</span>{% endif %}
+        {%- if fm %}<span class="tag tag-dark">{{ fm.label }}</span>{% endif %}
+        {%- if lv %}<span class="tag tag-dark">{{ lv.label }}</span>{% endif %}
+      </p>
+      <h1>{{ title }}</h1>
+      {%- if summary %}<p class="course-hero-summary">{{ summary }}</p>{% endif %}
+      <ul class="course-hero-facts">
+        {%- if duration %}<li><span>Хугацаа</span><strong>{{ duration }}</strong></li>{% endif %}
+        {%- if start_date %}<li><span>Эхлэх огноо</span><strong>{{ start_date | mnDate }}</strong></li>{% endif %}
+        {%- if schedule %}<li><span>Хуваарь</span><strong>{{ schedule }}</strong></li>{% endif %}
+        {%- if access %}<li><span>Бичлэг үзэх хугацаа</span><strong>{{ access }}</strong></li>{% endif %}
+        {%- if lessons and lessons.length %}<li><span>Хичээл</span><strong>{{ lessons.length }} хичээл</strong></li>{% endif %}
+      </ul>
+    </div>
+    <aside class="price-card" aria-label="Төлбөр, бүртгэл">
+      <p class="price-label">Сургалтын төлбөр</p>
+      <p class="price-value">{{ (price | money) or "Үнийг тодруулна" }}</p>
+      {%- if price_note %}<p class="price-note">{{ price_note }}</p>{% endif %}
+      {%- if status == "closed" %}
+      <p class="price-closed">Энэ сургалтын бүртгэл хаагдсан.</p>
+      <a class="btn btn-outline btn-block" href="/burtguuleh/?course={{ courseKey }}&amp;interest=1">Дараагийн ангийн мэдээлэл авах</a>
+      {%- elif status == "soon" %}
+      <a class="btn btn-primary btn-block" href="{{ regUrl }}">Урьдчилан бүртгүүлэх</a>
+      {%- else %}
+      <a class="btn btn-primary btn-block" href="{{ regUrl }}">Бүртгүүлэх</a>
+      {%- endif %}
+      <ul class="price-list">
+        <li>Нэхэмжлэхээр, дансаар эсвэл QPay-ээр төлнө</li>
+        <li>Төлбөрийн И-баримт олгоно</li>
+        {%- if format == "classroom" %}
+        <li>Хичээлийн байр, цагийг бүртгэлийн дараа мэдэгдэнэ</li>
+        {%- else %}
+        <li>Google Classroom-оор хичээлдээ хандана</li>
+        {%- endif %}
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container course-layout">
+    <div class="course-main">
+      {%- if vid %}
+      <h2 class="h-sub">Танилцуулга бичлэг</h2>
+      {{ ytPlayer(vid, title) }}
+      {%- endif %}
+
+      {%- if content | trim %}
+      <h2 class="h-sub">Сургалтын тухай</h2>
+      <div class="prose">{{ content | safe }}</div>
+      {%- endif %}
+
+      {%- if outcomes and outcomes.length %}
+      <h2 class="h-sub">Та юу сурах вэ</h2>
+      <ul class="check-list">
+        {%- for o in outcomes %}<li>{{ o }}</li>{% endfor %}
+      </ul>
+      {%- endif %}
+
+      {%- if lessons and lessons.length %}
+      <h2 class="h-sub">Хөтөлбөр</h2>
+      <ol class="lesson-list">
+        {%- for l in lessons %}
+        <li><span class="lesson-n">{{ loop.index }}</span><span class="lesson-t">{{ l.title }}</span>{% if l.duration %}<span class="lesson-d">{{ l.duration }}</span>{% endif %}</li>
+        {%- endfor %}
+      </ol>
+      {%- endif %}
+
+      {%- if audience and audience.length %}
+      <h2 class="h-sub">Хэнд зориулсан</h2>
+      <ul class="dot-list">
+        {%- for a in audience %}<li>{{ a }}</li>{% endfor %}
+      </ul>
+      {%- endif %}
+    </div>
+
+    <aside class="course-side">
+      {%- if instructor and instructor.name %}
+      <div class="side-card instructor">
+        {%- if instructor.photo %}<img class="instructor-photo" src="{{ instructor.photo }}" alt="{{ instructor.name }}" width="72" height="72" loading="lazy">{% endif %}
+        <p class="side-label">Багш</p>
+        <p class="instructor-name">{{ instructor.name }}</p>
+        {%- if instructor.title %}<p class="instructor-title">{{ instructor.title }}</p>{% endif %}
+        {%- if instructor.bio %}<p class="instructor-bio">{{ instructor.bio }}</p>{% endif %}
+      </div>
+      {%- endif %}
+      <div class="side-card">
+        <p class="side-label">Асуух зүйл байна уу?</p>
+        <p><a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a><br><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+        <p><a class="link-more" href="/asuult/">Түгээмэл асуулт</a></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>Суралцах заавар</p>
+      <h2>Хэрхэн суралцах вэ</h2>
+    </div>
+    {{ steps() }}
+    <p class="steps-cta"><a class="btn btn-primary" href="{{ regUrl }}">{{ "Урьдчилан бүртгүүлэх" if status == "soon" else "Бүртгүүлэх" }}</a></p>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": {{ title | json | safe }},
+  "description": {{ (summary or site.description) | json | safe }},
+  "inLanguage": "mn",
+  "url": {{ page.url | absUrl(site.url) | json | safe }},
+  "provider": { "@type": "Organization", "name": {{ site.company | json | safe }}, "sameAs": {{ site.main_url | json | safe }} }
+  {%- if price %},
+  "offers": { "@type": "Offer", "category": "Paid", "price": {{ price | json | safe }}, "priceCurrency": "MNT", "url": {{ page.url | absUrl(site.url) | json | safe }} }
+  {%- endif %}
+  {%- if fm %},
+  "hasCourseInstance": { "@type": "CourseInstance", "courseMode": {{ fm.mode | json | safe }}{% if duration %}, "courseWorkload": {{ duration | json | safe }}{% endif %}{% if start_date %}, "startDate": {{ start_date | isoDate | json | safe }}{% endif %} }
+  {%- endif %}
+}
+</script>
+
+{% include "partials/contact-band.njk" %}

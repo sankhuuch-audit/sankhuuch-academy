@@ -1,0 +1,8 @@
+[
+  { "label": "Нүүр", "url": "/" },
+  { "label": "Сургалтууд", "url": "/surgaltuud/" },
+  { "label": "Хэрхэн суралцах вэ", "url": "/hereh-suraltsah/" },
+  { "label": "Түгээмэл асуулт", "url": "/asuult/" },
+  { "label": "Холбоо барих", "url": "/holboo-barih/" },
+  { "label": "Бүртгүүлэх", "url": "/burtguuleh/" }
+]

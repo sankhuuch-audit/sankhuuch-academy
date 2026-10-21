@@ -1,0 +1,96 @@
+---
+layout: layouts/base.njk
+isHome: true
+title: Нүүр
+bodyClass: page-home
+permalink: /
+---
+{%- from "partials/macros.njk" import courseCard, steps %}
+{%- set open = collections.courses | whereDataNot("status", "closed") %}
+
+<section class="hero ac-hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow eyebrow-on-dark"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>{{ site.company }}-ийн сургалт</p>
+      <h1 class="hero-title ac-title"><span class="nowrap">Санхүүч-Аудит</span> <span class="accent">Академи</span></h1>
+      <p class="hero-tagline">{{ site.tagline }}</p>
+      <p class="hero-lead">Татвар, нийгмийн даатгал, нягтлан бодох бүртгэл, санхүүгийн тайлагналын сургалтыг онлайнаар, өөрт тохирох цагтаа үзээрэй.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/surgaltuud/">Сургалтуудтай танилцах</a>
+        <a class="btn btn-outline-light" href="/hereh-suraltsah/">Хэрхэн суралцах вэ</a>
+      </div>
+    </div>
+    <ul class="ac-stats" aria-label="{{ site.company }}-ийн тухай">
+      {%- for s in site.stats %}
+      <li><span class="stat-value">{{ s.value }}</span><span class="stat-label">{{ s.label }}</span></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="surgaltuud">
+  <div class="container">
+    <div class="section-head section-head-row">
+      <div class="section-head-copy">
+        <p class="eyebrow"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>Сургалтууд</p>
+        <h2>Санал болгож буй сургалтууд</h2>
+      </div>
+      {%- if collections.courses.length > 3 %}<a class="link-more" href="/surgaltuud/">Бүх сургалт</a>{% endif %}
+    </div>
+    {%- if open.length %}
+    <div class="course-grid">
+      {%- for c in open | limit(6) %}{{ courseCard(c, options) }}{% endfor %}
+    </div>
+    {%- else %}
+    <div class="soon-box">
+      <p class="soon-title">Сургалтууд удахгүй нийтлэгдэнэ</p>
+      <p>Бид анхны сургалтуудаа бэлтгэж байна. Сургалт нээгдэхэд мэдээлэл авахыг хүсвэл бүртгүүлээрэй.</p>
+      <p><a class="btn btn-primary" href="/burtguuleh/?interest=1">Мэдээлэл авах</a></p>
+    </div>
+    {%- endif %}
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>Суралцах заавар</p>
+      <h2>Бүртгүүлэхээс суралцах хүртэл 4 алхам</h2>
+    </div>
+    {{ steps() }}
+    <p class="steps-cta"><a class="link-more" href="/hereh-suraltsah/">Дэлгэрэнгүй заавар</a></p>
+  </div>
+</section>
+
+{%- if site.why and site.why.length %}
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>Яагаад бидэнтэй</p>
+      <h2>Мэргэжлийн байгууллагын туршлагад тулгуурласан сургалт</h2>
+    </div>
+    <div class="diff-grid">
+      {%- for w in site.why %}
+      <div class="diff"><h3>{{ w.title }}</h3><p>{{ w.text }}</p></div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+<section class="section section-tint">
+  <div class="container narrow">
+    <div class="section-head">
+      <p class="eyebrow"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>Түгээмэл асуулт</p>
+      <h2>Асуулт, хариулт</h2>
+    </div>
+    <div class="faq">
+      {%- for f in faq.items | limit(4) %}
+      <details class="faq-item"><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>
+      {%- endfor %}
+    </div>
+    <p class="steps-cta"><a class="link-more" href="/asuult/">Бүх асуулт</a></p>
+  </div>
+</section>
+
+{% include "partials/contact-band.njk" %}

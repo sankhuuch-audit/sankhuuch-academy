@@ -1,0 +1,14 @@
+<section class="contact-band">
+  <div class="container contact-band-inner">
+    <div>
+      <p class="eyebrow eyebrow-on-dark"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>Бүртгэл</p>
+      <p class="contact-band-title">Мэдлэгээ шинэчилж, <span class="accent">ажилдаа шууд хэрэглээрэй.</span></p>
+      <p class="contact-band-cta"><a class="btn btn-primary" href="/burtguuleh/">Сургалтад бүртгүүлэх</a></p>
+    </div>
+    <ul class="contact-band-list">
+      <li><span class="cb-label">Утас</span><span>{% for p in site.phones %}<a href="{{ p | telHref }}">{{ p }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span></li>
+      <li><span class="cb-label">Имэйл</span><span><a href="mailto:{{ site.email }}">{{ site.email }}</a></span></li>
+      <li><span class="cb-label">Хаяг</span><span>{{ site.address }}</span></li>
+    </ul>
+  </div>
+</section>

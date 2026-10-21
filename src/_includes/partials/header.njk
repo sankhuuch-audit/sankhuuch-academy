@@ -1,0 +1,27 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="{{ site.name }}, нүүр хуудас">
+      <img class="brand-logo" src="/assets/img/logo.svg" width="66" height="41" alt="">
+      <span class="brand-text">
+        <span class="brand-name">{{ site.brand }} <span class="brand-academy">{{ site.brandSub }}</span></span>
+        <span class="brand-sub">Мэргэжлийн сургалт</span>
+      </span>
+    </a>
+    <div class="header-tools">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Цэс нээх">
+        <span class="nav-toggle-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="nav-toggle-label">Цэс</span>
+      </button>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="Үндсэн цэс">
+      <ul>
+        {%- for item in navigation %}
+        {%- set active = (page.url == item.url) or (item.url != "/" and (page.url | string).startsWith(item.url)) %}
+        {%- set isCta = (item.url == "/burtguuleh/") %}
+        <li{% if item.url == "/" %} class="nav-home"{% endif %}><a href="{{ item.url }}"{% if isCta %} class="nav-cta"{% endif %}{% if active %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {%- endfor %}
+        <li class="nav-main-site"><a href="{{ site.main_url }}/">«Санхүүч-Аудит» сайт</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

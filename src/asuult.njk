@@ -1,0 +1,36 @@
+---
+layout: layouts/base.njk
+title: Түгээмэл асуулт
+description: Санхүүч-Аудит Академийн бүртгэл, төлбөр, Google Classroom-оор хичээл үзэхтэй холбоотой түгээмэл асуулт, хариулт.
+permalink: /asuult/
+---
+{%- from "partials/macros.njk" import pageHero %}
+{{ pageHero("Түгээмэл асуулт", "Асуулт, хариулт", "Бүртгэл, төлбөр, хичээл үзэхтэй холбоотой асуултын хариулт. Эндээс хариултаа олохгүй бол бидэнтэй холбогдоно уу.") }}
+
+<section class="section">
+  <div class="container narrow">
+    <div class="faq">
+      {%- for f in faq.items %}
+      <details class="faq-item"{% if loop.first %} open{% endif %}><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>
+      {%- endfor %}
+    </div>
+    <div class="side-card ac-ask">
+      <p class="side-label">Өөр асуулт байна уу?</p>
+      <p><a href="mailto:{{ site.email }}">{{ site.email }}</a> хаягаар имэйл бичих эсвэл <a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a> утсаар холбогдоно уу.</p>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for f in faq.items %}
+    { "@type": "Question", "name": {{ f.q | json | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ f.a | json | safe }} } }{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}
+</script>
+
+{% include "partials/contact-band.njk" %}

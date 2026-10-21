@@ -1,0 +1,19 @@
+{
+  "_tailbar": "Сургалтын төлөв, хэлбэр, түвшний нэрс. Pages CMS-ийн сонголттой адил key ашиглана.",
+  "status": [
+    { "key": "open", "label": "Бүртгэл нээлттэй" },
+    { "key": "soon", "label": "Удахгүй" },
+    { "key": "closed", "label": "Бүртгэл хаагдсан" }
+  ],
+  "format": [
+    { "key": "recorded", "label": "Бэлэн бичлэг", "mode": "online" },
+    { "key": "live", "label": "Zoom-оор шууд", "mode": "online" },
+    { "key": "classroom", "label": "Танхимаар", "mode": "onsite" }
+  ],
+  "level": [
+    { "key": "beginner", "label": "Анхан шат" },
+    { "key": "intermediate", "label": "Дунд шат" },
+    { "key": "advanced", "label": "Ахисан шат" },
+    { "key": "all", "label": "Бүх түвшин" }
+  ]
+}

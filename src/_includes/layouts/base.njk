@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- if isHome %}{% set pageTitle = site.name + " | " + site.tagline %}{% else %}{% set pageTitle = title + " | " + site.shortName %}{% endif %}
+  {%- set pageDescription = description or summary or site.description %}
+  {%- set canonical = page.url | absUrl(site.url) %}
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ pageDescription }}">
+  <link rel="canonical" href="{{ canonical }}">
+  <meta property="og:type" content="{{ ogType or 'website' }}">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ pageDescription }}">
+  <meta property="og:url" content="{{ canonical }}">
+  <meta property="og:image" content="{{ (ogImage or '/assets/img/og-academy.png') | absUrl(site.url) }}">
+  <meta property="og:locale" content="mn_MN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#16264a">
+  {%- if noindex %}<meta name="robots" content="noindex">{% endif %}
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/montserrat-cyrillic-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/academy.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": {{ site.name | json | safe }},
+    "description": {{ site.description | json | safe }},
+    "url": {{ site.url | json | safe }},
+    "logo": {{ '/assets/img/logo.png' | absUrl(site.url) | json | safe }},
+    "email": {{ site.email | json | safe }},
+    "telephone": {{ site.phones[0] | json | safe }},
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "604 тоот, Шинэ тэрэг плаза, Нарны зам-10, 1-р хороо",
+      "addressLocality": "Улаанбаатар",
+      "addressRegion": "Сүхбаатар дүүрэг",
+      "addressCountry": "MN"
+    },
+    "parentOrganization": {
+      "@type": "AccountingService",
+      "name": {{ site.company | json | safe }},
+      "url": {{ site.main_url | json | safe }}
+    }
+  }
+  </script>
+  {%- set gaId = site.ga_id | gaId %}
+  {%- if gaId %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ gaId }}"></script>
+  <script>window.dataLayer = window.dataLayer || []; function gtag(){ dataLayer.push(arguments); } gtag("js", new Date()); gtag("config", "{{ gaId }}");</script>
+  {%- endif %}
+  {%- block head %}{% endblock %}
+</head>
+<body class="academy {{ bodyClass }}">
+  <a class="skip-link" href="#main">Үндсэн агуулга руу шилжих</a>
+  {% include "partials/header.njk" %}
+  <main id="main" tabindex="-1">
+    {{ content | safe }}
+  </main>
+  {% include "partials/footer.njk" %}
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

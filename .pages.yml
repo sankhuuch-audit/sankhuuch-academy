@@ -1,0 +1,218 @@
+# Pages CMS тохиргоо (https://pagescms.org) — Санхүүч-Аудит Академи
+# Сургалт нэмэх, засах, түгээмэл асуулт болон ерөнхий тохиргоог хөтөч дээрээс маягтаар засна.
+# Хадгалах бүрт сайт 1-2 минутын дотор автоматаар шинэчлэгдэнэ.
+
+settings:
+  content:
+    # Маягтад байхгүй талбарыг файлаас устгахгүй, хэвээр үлдээнэ
+    merge: true
+
+media:
+  - name: images
+    label: Зураг
+    input: src/assets/uploads/images
+    output: /assets/uploads/images
+    extensions: [jpg, jpeg, png, webp]
+
+content:
+  # ---------------- Сургалт ----------------
+  - name: courses
+    label: Сургалтууд
+    type: collection
+    path: src/content/courses
+    filename: "{primary}.md"
+    format: yaml-frontmatter
+    exclude: [courses.11tydata.js]
+    view:
+      primary: title
+      fields: [title, status, price, order, draft]
+      sort: order
+      order: asc
+    fields:
+      - name: title
+        label: Сургалтын нэр
+        type: string
+        required: true
+      - name: summary
+        label: Товч тайлбар
+        description: Сургалтын карт болон Google хайлтад харагдах 1-2 өгүүлбэр.
+        type: text
+      - name: status
+        label: Бүртгэлийн төлөв
+        type: select
+        default: open
+        options:
+          values:
+            - name: open
+              label: Бүртгэл нээлттэй
+            - name: soon
+              label: Удахгүй (урьдчилан бүртгэнэ)
+            - name: closed
+              label: Бүртгэл хаагдсан
+      - name: format
+        label: Сургалтын хэлбэр
+        type: select
+        default: recorded
+        options:
+          values:
+            - name: recorded
+              label: Бэлэн бичлэг (Google Classroom)
+            - name: live
+              label: Zoom-оор шууд
+            - name: classroom
+              label: Танхимаар
+      - name: level
+        label: Түвшин
+        type: select
+        default: all
+        options:
+          values:
+            - name: all
+              label: Бүх түвшин
+            - name: beginner
+              label: Анхан шат
+            - name: intermediate
+              label: Дунд шат
+            - name: advanced
+              label: Ахисан шат
+      - name: price
+        label: Төлбөр, төгрөгөөр
+        description: "Зөвхөн тоогоор бичнэ. Жишээ: 150000. Хоосон эсвэл 0 бол «Үнийг тодруулна» гэж харагдана."
+        type: number
+      - name: price_note
+        label: Төлбөрийн нэмэлт тайлбар (заавал биш)
+        description: "Жишээ: Байгууллагаас 5-аас дээш оролцогч бүртгүүлбэл хөнгөлөлттэй"
+        type: string
+      - name: duration
+        label: Хугацаа
+        description: "Жишээ: 6 цаг · 8 хичээл"
+        type: string
+      - name: start_date
+        label: Эхлэх огноо (шууд болон танхимын сургалтад)
+        type: date
+        default: ""
+        options:
+          format: yyyy-MM-dd
+      - name: schedule
+        label: Хуваарь (заавал биш)
+        description: "Жишээ: Пүрэв гараг бүр 19:00–21:00"
+        type: string
+      - name: access
+        label: Бичлэг үзэх хугацаа (заавал биш)
+        description: "Жишээ: 3 сар"
+        type: string
+      - name: cover
+        label: Нүүр зураг (заавал биш, 16:9 харьцаатай)
+        type: image
+        options:
+          media: images
+      - name: intro_video
+        label: Танилцуулга бичлэг, YouTube холбоос (заавал биш)
+        description: "Үнэгүй үзүүлэх богино танилцуулга. Төлбөртэй хичээлийн бичлэгийг энд оруулахгүй, зөвхөн Google Classroom-д байршуулна."
+        type: string
+      - name: outcomes
+        label: Та юу сурах вэ
+        type: string
+        list: true
+      - name: lessons
+        label: Хөтөлбөр (хичээлүүд)
+        type: object
+        list:
+          collapsible:
+            summary: "{title}"
+        fields:
+          - { name: title, label: Хичээлийн нэр, type: string, required: true }
+          - { name: duration, label: "Үргэлжлэх хугацаа (жишээ: 45 мин)", type: string }
+      - name: audience
+        label: Хэнд зориулсан
+        type: string
+        list: true
+      - name: instructor
+        label: Багш
+        type: object
+        fields:
+          - { name: name, label: Нэр, type: string }
+          - { name: title, label: "Албан тушаал, мэргэшил", type: string }
+          - { name: bio, label: Товч танилцуулга, type: text }
+          - name: photo
+            label: Зураг (заавал биш)
+            type: image
+            options:
+              media: images
+      - name: order
+        label: Дараалал (1, 2, 3…)
+        type: number
+      - name: slug
+        label: Вэб хаяг (заавал биш)
+        description: "Хоосон орхивол сургалтын нэрээс автоматаар үүснэ. Нийтэлсний дараа нэрээ өөрчлөх бол хуучин хаягийг энд латинаар бичиж үлдээнэ."
+        type: string
+      - name: draft
+        label: Ноорог (вэбсайт дээр гаргахгүй)
+        type: boolean
+        default: false
+      - name: body
+        label: Сургалтын дэлгэрэнгүй тайлбар
+        type: rich-text
+        options:
+          format: markdown
+          media: images
+
+  # ---------------- Түгээмэл асуулт ----------------
+  - name: faq
+    label: Түгээмэл асуулт
+    type: file
+    path: src/_data/faq.json
+    format: json
+    fields:
+      - name: items
+        label: Асуулт, хариулт
+        type: object
+        list:
+          collapsible:
+            summary: "{q}"
+        fields:
+          - { name: q, label: Асуулт, type: string, required: true }
+          - { name: a, label: Хариулт, type: text, required: true }
+
+  # ---------------- Ерөнхий тохиргоо ----------------
+  - name: site
+    label: Ерөнхий тохиргоо
+    type: file
+    path: src/_data/site.json
+    format: json
+    fields:
+      - { name: name, label: Сайтын нэр, type: string }
+      - { name: shortName, label: Богино нэр (хуудасны гарчигт), type: string }
+      - { name: brand, label: Лого дээрх нэр, type: string }
+      - { name: brandSub, label: Лого дээрх нэрийн өнгөтэй хэсэг, type: string }
+      - { name: tagline, label: Уриа, type: string }
+      - { name: description, label: Танилцуулга (Google хайлтад харагдана), type: text }
+      - { name: url, label: Вэбсайтын хаяг, type: string }
+      - { name: main_url, label: Компанийн үндсэн сайтын хаяг, type: string }
+      - { name: company, label: Компанийн нэр, type: string }
+      - { name: address, label: Хаяг, type: text }
+      - { name: phones, label: Утас, type: string, list: true }
+      - { name: urgent_phone, label: Асуулт хүлээн авах утас, type: string }
+      - { name: email, label: "Имэйл (бүртгэл энэ хаяг руу ирнэ)", type: string }
+      - { name: map_url, label: Газрын зургийн холбоос, type: string }
+      - { name: map_embed, label: Газрын зургийн embed холбоос, type: string }
+      - { name: youtube_channel, label: YouTube сувгийн холбоос, type: string }
+      - { name: ga_id, label: "Google Analytics ID (G-ээр эхэлнэ, хоосон бол хандалт тоолохгүй)", type: string }
+      - name: stats
+        label: Тоон үзүүлэлт (нүүр хуудас)
+        type: object
+        list:
+          collapsible:
+            summary: "{value} {label}"
+        fields:
+          - { name: value, label: Тоо, type: string }
+          - { name: label, label: Тайлбар, type: string }
+      - name: why
+        label: Яагаад бидэнтэй (нүүр хуудас)
+        type: object
+        list:
+          collapsible:
+            summary: "{title}"
+        fields:
+          - { name: title, label: Гарчиг, type: string }
+          - { name: text, label: Тайлбар, type: text }

@@ -1,0 +1,46 @@
+---
+layout: layouts/base.njk
+title: Сургалтууд
+description: Санхүүч-Аудит Академийн татвар, нийгмийн даатгал, нягтлан бодох бүртгэл, санхүүгийн тайлагналын сургалтууд. Хөтөлбөр, хугацаа, төлбөр.
+permalink: /surgaltuud/
+---
+{%- from "partials/macros.njk" import pageHero, courseCard %}
+{%- set open = collections.courses | whereDataNot("status", "closed") %}
+{%- set closed = collections.courses | whereData("status", "closed") %}
+{{ pageHero("Сургалтууд", "Сургалтууд", "Сургалт бүрийн хөтөлбөр, хугацаа, төлбөртэй танилцаад өөрт тохирохыг сонгоно уу. Бүртгүүлсний дараа төлбөрийн нэхэмжлэх таны имэйлд ирнэ.") }}
+
+<section class="section">
+  <div class="container">
+    {%- if open.length %}
+    <div class="course-grid">
+      {%- for c in open %}{{ courseCard(c, options) }}{% endfor %}
+    </div>
+    {%- else %}
+    <div class="soon-box">
+      <p class="soon-title">Сургалтууд удахгүй нийтлэгдэнэ</p>
+      <p>Бид анхны сургалтуудаа бэлтгэж байна. Сургалт нээгдэхэд мэдээлэл авахыг хүсвэл бүртгүүлээрэй.</p>
+      <p><a class="btn btn-primary" href="/burtguuleh/?interest=1">Мэдээлэл авах</a></p>
+    </div>
+    {%- endif %}
+
+    {%- if closed.length %}
+    <h2 class="h-section ac-closed-h">Бүртгэл хаагдсан сургалтууд</h2>
+    <div class="course-grid is-muted">
+      {%- for c in closed %}{{ courseCard(c, options) }}{% endfor %}
+    </div>
+    {%- endif %}
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>Байгууллагад</p>
+      <h2>Ажилтнуудаа хамтад нь сургах уу?</h2>
+      <p class="section-intro">Байгууллагаараа бүртгүүлбэл нэхэмжлэх, И-баримтыг байгууллагын нэр, регистрийн дугаараар гаргана. Бүртгэлийн маягтад «Байгууллага» гэж сонгоод оролцогчийн тоогоо бичнэ үү.</p>
+    </div>
+    <p><a class="btn btn-primary" href="/burtguuleh/?payer=org">Байгууллагаар бүртгүүлэх</a></p>
+  </div>
+</section>
+
+{% include "partials/contact-band.njk" %}

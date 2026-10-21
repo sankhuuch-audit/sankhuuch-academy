@@ -1,0 +1,64 @@
+{# Дахин ашиглагдах хэсгүүд #}
+
+{% macro pageHero(eyebrow, heading, intro) %}
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow eyebrow-on-dark"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>{{ eyebrow }}</p>
+    <h1>{{ heading }}</h1>
+    {% if intro %}<p class="page-hero-intro">{{ intro }}</p>{% endif %}
+    {{ caller() if caller }}
+  </div>
+</section>
+{% endmacro %}
+
+{# Сургалтын карт #}
+{% macro courseCard(c, options) %}
+{%- set st = options.status | findBy("key", c.data.status or "open") %}
+{%- set fm = options.format | findBy("key", c.data.format) %}
+{%- set tags %}<p class="course-tags">
+      {%- if st %}<span class="tag tag-{{ st.key }}">{{ st.label }}</span>{% endif %}
+      {%- if fm %}<span class="tag tag-format">{{ fm.label }}</span>{% endif %}
+    </p>{% endset %}
+<article class="course-card{% if not c.data.cover %} no-cover{% endif %}">
+  {%- if c.data.cover %}
+  <a class="course-cover" href="{{ c.url }}" tabindex="-1" aria-hidden="true"><img src="{{ c.data.cover }}" alt="" loading="lazy" width="640" height="360"></a>
+  {%- else %}
+  <div class="course-band">{{ tags | safe }}</div>
+  {%- endif %}
+  <div class="course-body">
+    {%- if c.data.cover %}{{ tags | safe }}{% endif %}
+    <h3 class="course-title"><a href="{{ c.url }}">{{ c.data.title }}</a></h3>
+    {%- if c.data.summary %}<p class="course-summary">{{ c.data.summary }}</p>{% endif %}
+    {%- if c.data.duration or c.data.start_date %}
+    <dl class="course-facts">
+      {%- if c.data.duration %}<div><dt>Хугацаа</dt><dd>{{ c.data.duration }}</dd></div>{% endif %}
+      {%- if c.data.start_date %}<div><dt>Эхлэх</dt><dd>{{ c.data.start_date | mnDate }}</dd></div>{% endif %}
+    </dl>
+    {%- endif %}
+    <p class="course-foot">
+      <span class="course-price">{{ (c.data.price | money) or "Үнийг тодруулна" }}</span>
+      <a class="link-more" href="{{ c.url }}">Дэлгэрэнгүй</a>
+    </p>
+  </div>
+</article>
+{% endmacro %}
+
+{% macro ytPlayer(id, title) %}
+<div class="yt" data-yt="{{ id }}">
+  <button type="button" class="yt-btn" aria-label="Бичлэг тоглуулах: {{ title }}">
+    <img src="https://i.ytimg.com/vi/{{ id }}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.5 7.7a8.6 8.6 0 0 0-6-6C55.2.3 34 .3 34 .3s-21.2 0-26.5 1.4a8.6 8.6 0 0 0-6 6C.1 13 .1 24 .1 24s0 11 1.4 16.3a8.6 8.6 0 0 0 6 6C12.8 47.7 34 47.7 34 47.7s21.2 0 26.5-1.4a8.6 8.6 0 0 0 6-6C67.9 35 67.9 24 67.9 24s0-11-1.4-16.3z" fill="#d8263e"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></span>
+  </button>
+  <noscript><a href="https://www.youtube.com/watch?v={{ id }}">YouTube дээр үзэх</a></noscript>
+</div>
+{% endmacro %}
+
+{# Суралцах алхам #}
+{% macro steps() %}
+<ol class="learn-steps">
+  <li><span class="learn-num">1</span><strong>Сургалтаа сонгоно</strong><span>Сургалтын хөтөлбөр, хугацаа, үнэтэй танилцаж, өөрт тохирохыг сонгоно.</span></li>
+  <li><span class="learn-num">2</span><strong>Бүртгүүлнэ</strong><span>Бүртгэлийн маягтыг 2 минутад бөглөнө. Google (Gmail) хаягаа зөв бичнэ үү.</span></li>
+  <li><span class="learn-num">3</span><strong>Төлбөрөө төлнө</strong><span>Таны имэйлд ирсэн нэхэмжлэхийн дагуу дансаар эсвэл QPay-ээр төлнө. И-баримт олгоно.</span></li>
+  <li><span class="learn-num">4</span><strong>Суралцаж эхэлнэ</strong><span>Төлбөр орсны дараа Google Classroom-ийн урилга таны Gmail хаягт ирж, хичээлүүдээ үзнэ.</span></li>
+</ol>
+{% endmacro %}
