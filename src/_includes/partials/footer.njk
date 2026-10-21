@@ -1,13 +1,12 @@
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <img class="footer-logo" src="/assets/img/logo-light.svg" width="104" height="64" alt="{{ site.brand }} лого" loading="lazy">
+      <img class="footer-mark" src="/assets/img/mark-light.svg" width="52" height="52" alt="" loading="lazy">
       <p class="footer-name">{{ site.name }}</p>
       <p class="footer-tagline">{{ site.tagline }}</p>
-      <a class="footer-badge" href="{{ site.main_url }}/" rel="noopener">{{ site.company }}</a>
     </div>
     <nav class="footer-col" aria-label="Хуудсууд">
-      <h2 class="footer-h">Академи</h2>
+      <h2 class="footer-h">Хуудсууд</h2>
       <ul>
         {%- for item in navigation %}<li><a href="{{ item.url }}">{{ item.label }}</a></li>{% endfor %}
       </ul>
@@ -16,15 +15,14 @@
       <h2 class="footer-h">Сургалтууд</h2>
       <ul>
         {%- for c in collections.courses | limit(6) %}<li><a href="{{ c.url }}">{{ c.data.title }}</a></li>{% else %}<li><a href="/surgaltuud/">Удахгүй нийтлэгдэнэ</a></li>{% endfor %}
-        <li><a href="{{ site.main_url }}/">«Санхүүч-Аудит» ХХК-ийн сайт</a></li>
       </ul>
     </nav>
     <div class="footer-col">
       <h2 class="footer-h">Холбоо барих</h2>
       <address>
-        <p>{{ site.address }}</p>
-        <p>{% for p in site.phones %}<a href="{{ p | telHref }}">{{ p }}</a>{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
-        <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+        {%- if site.address %}<p>{{ site.address }}</p>{% endif %}
+        {%- if site.phones and site.phones.length %}<p>{% for p in site.phones %}<a href="{{ p | telHref }}">{{ p }}</a>{% if not loop.last %}<br>{% endif %}{% endfor %}</p>{% endif %}
+        {%- if site.email %}<p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>{% endif %}
       </address>
       {%- if site.youtube_channel %}
       <p class="footer-social"><a href="{{ site.youtube_channel }}" rel="noopener" target="_blank">YouTube суваг</a></p>
@@ -32,10 +30,9 @@
     </div>
   </div>
   <div class="container footer-bottom">
-    <p>© {{ build.year }} {{ site.company }}. Бүх эрх хуулиар хамгаалагдсан.</p>
+    <p>© {{ build.year }} {{ site.name }}</p>
     {%- if site.ga_id | gaId %}
     <p class="footer-note">Хандалтын статистикт Google Analytics (cookie) ашигладаг.</p>
     {%- endif %}
-    <p class="tribar-line" aria-hidden="true"><span class="tribar"><i></i><i></i><i></i></span></p>
   </div>
 </footer>

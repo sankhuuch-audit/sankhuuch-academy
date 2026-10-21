@@ -1,20 +1,25 @@
-/* Санхүүч-Аудит Академи — нэмэлт загвар
-   Үндсэн загвар site.css («Санхүүч-Аудит» ХХК-ийн сайттай ижил). Энд зөвхөн академийн хэсгүүд. */
+/* Ганзо Сургалт — нэмэлт загвар
+   Үндсэн загвар site.css. Энд зөвхөн сургалтын сайтын хэсгүүд. */
 
 /* ---------- Толгой хэсэг ---------- */
+.brand-mark { width: 40px; height: 40px; flex: none; }
 .brand-academy { color: var(--teal-ink); }
-.site-nav .nav-main-site a { color: var(--muted); font-weight: 600; }
-.site-nav .nav-main-site a::after { content: " ↗"; }
-@media (min-width: 1080px) { .site-nav .nav-main-site { display: none; } }
-@media (max-width: 1079px) { .site-nav .nav-main-site { border-top: 1px solid var(--line); margin-top: 8px; padding-top: 6px; } }
+.footer-mark { width: 52px; height: 52px; }
+@media (max-width: 380px) { .brand-mark { width: 34px; height: 34px; } }
+/* Гурван өнгийн зураасын оронд нэг ногоон зураас (хувийн брэнд) */
+.academy .tribar i { width: 26px; background: var(--teal); }
+.academy .tribar i:nth-child(n+2) { display: none; }
+.academy .eyebrow-on-dark .tribar i { background: var(--teal-light); }
 
 /* ---------- Нүүрний баннер ---------- */
-.ac-title { white-space: normal; font-size: clamp(2rem, 5.6vw, 3.1rem); line-height: 1.1; }
-.ac-stats { list-style: none; display: grid; border: 1px solid rgb(255 255 255 / .14); border-radius: var(--radius); background: rgb(255 255 255 / .03); }
-.ac-stats li { display: grid; grid-template-columns: minmax(96px, auto) minmax(0, 1fr); align-items: center; gap: 18px; padding: clamp(18px, 2.4vw, 26px); }
-.ac-stats li + li { border-top: 1px solid rgb(255 255 255 / .14); }
-.ac-stats .stat-label { margin-top: 0; }
-@media (max-width: 380px) { .ac-stats li { grid-template-columns: 1fr; gap: 6px; } .ac-stats .stat-value { font-size: 1.9rem; } }
+.ac-title { white-space: normal; font-size: clamp(2.1rem, 6vw, 3.3rem); line-height: 1.08; }
+.ac-topics { padding: clamp(20px, 2.6vw, 28px); border: 1px solid rgb(255 255 255 / .14); border-radius: var(--radius); background: rgb(255 255 255 / .03); }
+.ac-topics-h { font: 700 .76rem var(--f-head); letter-spacing: .12em; text-transform: uppercase; color: var(--teal-light); margin-bottom: 14px; }
+.ac-topics ul { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.ac-topics li { display: grid; gap: 4px; align-content: start; padding: 16px; border-radius: var(--radius-sm); background: rgb(255 255 255 / .05); }
+.ac-topics strong { font-family: var(--f-head); font-size: 1.02rem; color: #fff; }
+.ac-topics span { font-size: .88rem; color: var(--on-dark-muted); line-height: 1.45; }
+@media (max-width: 420px) { .ac-topics ul { grid-template-columns: 1fr; } }
 
 .section-head-copy { display: grid; gap: 10px; }
 .steps-cta { margin-top: 26px; }

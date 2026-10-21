@@ -2,7 +2,7 @@
 layout: layouts/base.njk
 bodyClass: page-course
 ---
-{%- from "partials/macros.njk" import ytPlayer, steps %}
+{%- from "partials/macros.njk" import ytPlayer, steps with context %}
 {%- set st = options.status | findBy("key", status or "open") %}
 {%- set fm = options.format | findBy("key", format) %}
 {%- set lv = options.level | findBy("key", level) %}
@@ -42,7 +42,9 @@ bodyClass: page-course
       {%- endif %}
       <ul class="price-list">
         <li>Нэхэмжлэхээр, дансаар эсвэл QPay-ээр төлнө</li>
+        {%- if site.ebarimt %}
         <li>Төлбөрийн И-баримт олгоно</li>
+        {%- endif %}
         {%- if format == "classroom" %}
         <li>Хичээлийн байр, цагийг бүртгэлийн дараа мэдэгдэнэ</li>
         {%- else %}
@@ -102,7 +104,7 @@ bodyClass: page-course
       {%- endif %}
       <div class="side-card">
         <p class="side-label">Асуух зүйл байна уу?</p>
-        <p><a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a><br><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+        <p>{% if site.urgent_phone %}<a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a><br>{% endif %}{% if site.email %}<a href="mailto:{{ site.email }}">{{ site.email }}</a>{% endif %}</p>
         <p><a class="link-more" href="/asuult/">Түгээмэл асуулт</a></p>
       </div>
     </aside>
@@ -128,7 +130,7 @@ bodyClass: page-course
   "description": {{ (summary or site.description) | json | safe }},
   "inLanguage": "mn",
   "url": {{ page.url | absUrl(site.url) | json | safe }},
-  "provider": { "@type": "Organization", "name": {{ site.company | json | safe }}, "sameAs": {{ site.main_url | json | safe }} }
+  "provider": { "@type": "Organization", "name": {{ site.name | json | safe }}, "url": {{ site.url | json | safe }} }
   {%- if price %},
   "offers": { "@type": "Offer", "category": "Paid", "price": {{ price | json | safe }}, "priceCurrency": "MNT", "url": {{ page.url | absUrl(site.url) | json | safe }} }
   {%- endif %}

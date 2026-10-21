@@ -5,14 +5,14 @@ title: Нүүр
 bodyClass: page-home
 permalink: /
 ---
-{%- from "partials/macros.njk" import courseCard, steps %}
+{%- from "partials/macros.njk" import courseCard, steps with context %}
 {%- set open = collections.courses | whereDataNot("status", "closed") %}
 
 <section class="hero ac-hero">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow eyebrow-on-dark"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>{{ site.company }}-ийн сургалт</p>
-      <h1 class="hero-title ac-title"><span class="nowrap">Санхүүч-Аудит</span> <span class="accent">Академи</span></h1>
+      <p class="eyebrow eyebrow-on-dark"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>Онлайн сургалт</p>
+      <h1 class="hero-title ac-title"><span class="nowrap">{{ site.brand }}</span> <span class="accent">{{ site.brandSub }}</span></h1>
       <p class="hero-tagline">{{ site.tagline }}</p>
       <p class="hero-lead">Татвар, нийгмийн даатгал, нягтлан бодох бүртгэл, санхүүгийн тайлагналын сургалтыг онлайнаар, өөрт тохирох цагтаа үзээрэй.</p>
       <div class="hero-actions">
@@ -20,11 +20,16 @@ permalink: /
         <a class="btn btn-outline-light" href="/hereh-suraltsah/">Хэрхэн суралцах вэ</a>
       </div>
     </div>
-    <ul class="ac-stats" aria-label="{{ site.company }}-ийн тухай">
-      {%- for s in site.stats %}
-      <li><span class="stat-value">{{ s.value }}</span><span class="stat-label">{{ s.label }}</span></li>
-      {%- endfor %}
-    </ul>
+    {%- if site.topics and site.topics.length %}
+    <div class="ac-topics">
+      <p class="ac-topics-h">Сургалтын чиглэл</p>
+      <ul>
+        {%- for t in site.topics %}
+        <li><strong>{{ t.title }}</strong>{% if t.text %}<span>{{ t.text }}</span>{% endif %}</li>
+        {%- endfor %}
+      </ul>
+    </div>
+    {%- endif %}
   </div>
 </section>
 
@@ -67,7 +72,7 @@ permalink: /
   <div class="container">
     <div class="section-head">
       <p class="eyebrow"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>Яагаад бидэнтэй</p>
-      <h2>Мэргэжлийн байгууллагын туршлагад тулгуурласан сургалт</h2>
+      <h2>Ажилдаа шууд хэрэглэх мэдлэг</h2>
     </div>
     <div class="diff-grid">
       {%- for w in site.why %}

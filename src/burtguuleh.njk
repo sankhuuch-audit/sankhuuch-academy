@@ -1,10 +1,10 @@
 ---
 layout: layouts/base.njk
 title: Сургалтад бүртгүүлэх
-description: Санхүүч-Аудит Академийн сургалтад бүртгүүлэх маягт. Бүртгүүлсний дараа төлбөрийн нэхэмжлэх имэйлээр ирж, төлбөр орсны дараа Google Classroom-ийн урилга ирнэ.
+description: Ганзо Сургалтад бүртгүүлэх маягт. Бүртгүүлсний дараа төлбөрийн нэхэмжлэх имэйлээр ирж, төлбөр орсны дараа Google Classroom-ийн урилга ирнэ.
 permalink: /burtguuleh/
 ---
-{%- from "partials/macros.njk" import pageHero %}
+{%- from "partials/macros.njk" import pageHero with context %}
 {%- set open = collections.courses | whereDataNot("status", "closed") %}
 {{ pageHero("Бүртгэл", "Сургалтад бүртгүүлэх", "Маягтыг бөглөж илгээнэ үү. Бид төлбөрийн нэхэмжлэхийг таны имэйл хаяг руу илгээх бөгөөд төлбөр орсны дараа Google Classroom-ийн урилга ирнэ.") }}
 
@@ -58,7 +58,7 @@ permalink: /burtguuleh/
           <label class="q-field"><span class="visually-hidden">Нэмэлт мэдээлэл</span>
             <textarea id="r-notes" name="notes" rows="3" placeholder="Асуух зүйл, нэхэмжлэх хүлээн авах өөр имэйл хаяг гэх мэт"></textarea></label>
         </details>
-        <label class="q-check q-check-line"><input id="r-consent" type="checkbox" name="consent" value="Тийм" required><span>Миний оруулсан мэдээллийг сургалтын бүртгэл, төлбөрийн нэхэмжлэх, И-баримт гаргах зорилгоор ашиглахыг зөвшөөрч байна <b aria-hidden="true">*</b></span></label>
+        <label class="q-check q-check-line"><input id="r-consent" type="checkbox" name="consent" value="Тийм" required><span>Миний оруулсан мэдээллийг сургалтын бүртгэл, төлбөрийн нэхэмжлэх гаргах зорилгоор ашиглахыг зөвшөөрч байна <b aria-hidden="true">*</b></span></label>
         <label class="q-hp" aria-hidden="true">Энэ талбарыг хоосон орхино уу<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
       </fieldset>
 
@@ -74,7 +74,7 @@ permalink: /burtguuleh/
       <h2>Баярлалаа!</h2>
       <p id="reg-done-pay">Таны бүртгэлийг хүлээн авлаа. Төлбөрийн нэхэмжлэхийг <strong data-done-email></strong> хаяг руу удахгүй илгээнэ. Төлбөр орсны дараа Google Classroom-ийн урилга мөн энэ хаяг руу ирнэ.</p>
       <p id="reg-done-soon" hidden>Таны бүртгэлийг хүлээн авлаа. Сургалт нээгдэх үед бид <strong data-done-email></strong> хаяг руу эсвэл утсаар тантай холбогдоно.</p>
-      <p class="q-note">Имэйл ирээгүй бол «Spam» хавтсаа шалгана уу. Асуух зүйл байвал <a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a> утсаар холбогдоно уу.</p>
+      <p class="q-note">Имэйл ирээгүй бол «Spam» хавтсаа шалгана уу.{% if site.urgent_phone %} Асуух зүйл байвал <a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a> утсаар холбогдоно уу.{% endif %}</p>
       <p class="hero-actions"><a class="btn btn-outline" href="/hereh-suraltsah/">Хэрхэн суралцах вэ</a> <a class="btn btn-outline" href="/">Нүүр хуудас</a></p>
     </div>
 
@@ -82,13 +82,13 @@ permalink: /burtguuleh/
       <h2 class="h-small">Бүртгэлийн дараа</h2>
       <ol class="quote-steps">
         <li><strong>Нэхэмжлэх ирнэ</strong><span>Төлбөрийн нэхэмжлэхийг таны имэйл хаяг руу илгээнэ.</span></li>
-        <li><strong>Төлбөрөө төлнө</strong><span>Нэхэмжлэхэд заасан дансаар эсвэл QPay-ээр төлнө. И-баримт олгоно.</span></li>
+        <li><strong>Төлбөрөө төлнө</strong><span>Нэхэмжлэхэд заасан дансаар эсвэл QPay-ээр төлнө.{% if site.ebarimt %} И-баримт олгоно.{% endif %}</span></li>
         <li><strong>Урилга ирнэ</strong><span>Төлбөр орсны дараа Google Classroom-ийн урилга таны Google хаяг руу ирж, хичээлээ үзэж эхэлнэ.</span></li>
       </ol>
       <div class="quote-contact">
         <p class="contact-label">Шууд холбогдох</p>
-        <p>{% for p in site.phones %}<a href="{{ p | telHref }}">{{ p }}</a>{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
-        <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+        {%- if site.phones and site.phones.length %}<p>{% for p in site.phones %}<a href="{{ p | telHref }}">{{ p }}</a>{% if not loop.last %}<br>{% endif %}{% endfor %}</p>{% endif %}
+        {%- if site.email %}<p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>{% endif %}
       </div>
     </aside>
   </div>

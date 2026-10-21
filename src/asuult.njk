@@ -1,10 +1,10 @@
 ---
 layout: layouts/base.njk
 title: Түгээмэл асуулт
-description: Санхүүч-Аудит Академийн бүртгэл, төлбөр, Google Classroom-оор хичээл үзэхтэй холбоотой түгээмэл асуулт, хариулт.
+description: Ганзо Сургалтын бүртгэл, төлбөр, Google Classroom-оор хичээл үзэхтэй холбоотой түгээмэл асуулт, хариулт.
 permalink: /asuult/
 ---
-{%- from "partials/macros.njk" import pageHero %}
+{%- from "partials/macros.njk" import pageHero with context %}
 {{ pageHero("Түгээмэл асуулт", "Асуулт, хариулт", "Бүртгэл, төлбөр, хичээл үзэхтэй холбоотой асуултын хариулт. Эндээс хариултаа олохгүй бол бидэнтэй холбогдоно уу.") }}
 
 <section class="section">
@@ -16,7 +16,7 @@ permalink: /asuult/
     </div>
     <div class="side-card ac-ask">
       <p class="side-label">Өөр асуулт байна уу?</p>
-      <p><a href="mailto:{{ site.email }}">{{ site.email }}</a> хаягаар имэйл бичих эсвэл <a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a> утсаар холбогдоно уу.</p>
+      <p><a href="mailto:{{ site.email }}">{{ site.email }}</a> хаягаар имэйл бичнэ үү{% if site.urgent_phone %} эсвэл <a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a> утсаар холбогдоно уу{% endif %}.</p>
     </div>
   </div>
 </section>

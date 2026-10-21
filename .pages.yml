@@ -1,4 +1,4 @@
-# Pages CMS тохиргоо (https://pagescms.org) — Санхүүч-Аудит Академи
+# Pages CMS тохиргоо (https://pagescms.org) — Ганзо Сургалт
 # Сургалт нэмэх, засах, түгээмэл асуулт болон ерөнхий тохиргоог хөтөч дээрээс маягтаар засна.
 # Хадгалах бүрт сайт 1-2 минутын дотор автоматаар шинэчлэгдэнэ.
 
@@ -188,27 +188,29 @@ content:
       - { name: tagline, label: Уриа, type: string }
       - { name: description, label: Танилцуулга (Google хайлтад харагдана), type: text }
       - { name: url, label: Вэбсайтын хаяг, type: string }
-      - { name: main_url, label: Компанийн үндсэн сайтын хаяг, type: string }
-      - { name: company, label: Компанийн нэр, type: string }
-      - { name: address, label: Хаяг, type: text }
-      - { name: phones, label: Утас, type: string, list: true }
-      - { name: urgent_phone, label: Асуулт хүлээн авах утас, type: string }
+      - { name: phones, label: "Утас (хоосон бол сайт дээр харагдахгүй)", type: string, list: true }
+      - { name: urgent_phone, label: "Асуулт хүлээн авах утас (хоосон бол харагдахгүй)", type: string }
       - { name: email, label: "Имэйл (бүртгэл энэ хаяг руу ирнэ)", type: string }
+      - { name: address, label: "Хаяг (танхимын сургалтад, хоосон бол харагдахгүй)", type: text }
       - { name: map_url, label: Газрын зургийн холбоос, type: string }
       - { name: map_embed, label: Газрын зургийн embed холбоос, type: string }
       - { name: youtube_channel, label: YouTube сувгийн холбоос, type: string }
       - { name: ga_id, label: "Google Analytics ID (G-ээр эхэлнэ, хоосон бол хандалт тоолохгүй)", type: string }
-      - name: stats
-        label: Тоон үзүүлэлт (нүүр хуудас)
+      - name: ebarimt
+        label: "И-баримт олгодог (асаавал «И-баримт олгоно» гэж сайт дээр гарна)"
+        type: boolean
+        default: false
+      - name: topics
+        label: Сургалтын чиглэл (нүүр хуудас)
         type: object
         list:
           collapsible:
-            summary: "{value} {label}"
+            summary: "{title}"
         fields:
-          - { name: value, label: Тоо, type: string }
-          - { name: label, label: Тайлбар, type: string }
+          - { name: title, label: Чиглэл, type: string }
+          - { name: text, label: Тайлбар, type: string }
       - name: why
-        label: Яагаад бидэнтэй (нүүр хуудас)
+        label: Давуу тал (нүүр хуудас)
         type: object
         list:
           collapsible:

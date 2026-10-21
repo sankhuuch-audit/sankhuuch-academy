@@ -1,10 +1,10 @@
 ---
 layout: layouts/base.njk
 title: Хэрхэн суралцах вэ
-description: Санхүүч-Аудит Академид бүртгүүлэх, төлбөр төлөх, Google Classroom-оор хичээлээ үзэх заавар.
+description: Ганзо Сургалтад бүртгүүлэх, төлбөр төлөх, Google Classroom-оор хичээлээ үзэх заавар.
 permalink: /hereh-suraltsah/
 ---
-{%- from "partials/macros.njk" import pageHero, steps %}
+{%- from "partials/macros.njk" import pageHero, steps with context %}
 {{ pageHero("Суралцах заавар", "Хэрхэн суралцах вэ", "Бүртгүүлэхээс эхлээд хичээлээ үзэх хүртэлх алхам. Бичлэгт хичээлүүд Google Classroom дээр байрлах тул Google (Gmail) хаяг шаардлагатай.") }}
 
 <section class="section">
@@ -49,7 +49,7 @@ permalink: /hereh-suraltsah/
         <ul class="dot-list">
           <li>Урилга ирээгүй бол имэйлийнхээ «Spam» хавтсыг шалгана уу.</li>
           <li>Өөр Google хаягаар нэвтэрсэн бол хичээл харагдахгүй. Профайл зургаа дарж бүртгүүлсэн хаягаа сонгоно уу.</li>
-          <li>Асуудал шийдэгдэхгүй бол <a href="mailto:{{ site.email }}">{{ site.email }}</a> хаягаар бичих эсвэл <a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a> утсаар холбогдоно уу.</li>
+          <li>Асуудал шийдэгдэхгүй бол <a href="mailto:{{ site.email }}">{{ site.email }}</a> хаягаар бичнэ үү{% if site.urgent_phone %} эсвэл <a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a> утсаар холбогдоно уу{% endif %}.</li>
         </ul>
       </div>
     </div>
@@ -63,7 +63,7 @@ permalink: /hereh-suraltsah/
       <h2>Байгууллагаар бүртгүүлэх</h2>
     </div>
     <div class="prose">
-      <p>Бүртгэлийн маягтад «Байгууллага» гэж сонгоод байгууллагын нэр, регистрийн дугаар, оролцогчийн тоогоо бичнэ үү. Нэхэмжлэх, И-баримтыг байгууллагын нэрээр гаргана.</p>
+      <p>Бүртгэлийн маягтад «Байгууллага» гэж сонгоод байгууллагын нэр, регистрийн дугаар, оролцогчийн тоогоо бичнэ үү. Нэхэмжлэхийг байгууллагын нэрээр гаргана.</p>
       <p>Оролцогч бүрийн нэр, Google хаягийг <a href="mailto:{{ site.email }}">{{ site.email }}</a> хаяг руу имэйлээр илгээнэ. Урилга оролцогч бүрийн Google хаяг руу тус тусад нь очно.</p>
     </div>
     <p class="steps-cta"><a class="btn btn-primary" href="/burtguuleh/?payer=org">Байгууллагаар бүртгүүлэх</a></p>

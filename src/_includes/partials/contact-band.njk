@@ -6,9 +6,15 @@
       <p class="contact-band-cta"><a class="btn btn-primary" href="/burtguuleh/">Сургалтад бүртгүүлэх</a></p>
     </div>
     <ul class="contact-band-list">
+      {%- if site.phones and site.phones.length %}
       <li><span class="cb-label">Утас</span><span>{% for p in site.phones %}<a href="{{ p | telHref }}">{{ p }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span></li>
+      {%- endif %}
+      {%- if site.email %}
       <li><span class="cb-label">Имэйл</span><span><a href="mailto:{{ site.email }}">{{ site.email }}</a></span></li>
-      <li><span class="cb-label">Хаяг</span><span>{{ site.address }}</span></li>
+      {%- endif %}
+      {%- if site.youtube_channel %}
+      <li><span class="cb-label">YouTube</span><span><a href="{{ site.youtube_channel }}" rel="noopener" target="_blank">Үнэгүй бичлэгүүд</a></span></li>
+      {%- endif %}
     </ul>
   </div>
 </section>

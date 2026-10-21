@@ -1,10 +1,10 @@
 ---
 layout: layouts/base.njk
 title: Сургалтууд
-description: Санхүүч-Аудит Академийн татвар, нийгмийн даатгал, нягтлан бодох бүртгэл, санхүүгийн тайлагналын сургалтууд. Хөтөлбөр, хугацаа, төлбөр.
+description: Ганзо Сургалтын татвар, нийгмийн даатгал, нягтлан бодох бүртгэл, санхүүгийн тайлагналын сургалтууд. Хөтөлбөр, хугацаа, төлбөр.
 permalink: /surgaltuud/
 ---
-{%- from "partials/macros.njk" import pageHero, courseCard %}
+{%- from "partials/macros.njk" import pageHero, courseCard with context %}
 {%- set open = collections.courses | whereDataNot("status", "closed") %}
 {%- set closed = collections.courses | whereData("status", "closed") %}
 {{ pageHero("Сургалтууд", "Сургалтууд", "Сургалт бүрийн хөтөлбөр, хугацаа, төлбөртэй танилцаад өөрт тохирохыг сонгоно уу. Бүртгүүлсний дараа төлбөрийн нэхэмжлэх таны имэйлд ирнэ.") }}
@@ -37,7 +37,7 @@ permalink: /surgaltuud/
     <div class="section-head">
       <p class="eyebrow"><span class="tribar" aria-hidden="true"><i></i><i></i><i></i></span>Байгууллагад</p>
       <h2>Ажилтнуудаа хамтад нь сургах уу?</h2>
-      <p class="section-intro">Байгууллагаараа бүртгүүлбэл нэхэмжлэх, И-баримтыг байгууллагын нэр, регистрийн дугаараар гаргана. Бүртгэлийн маягтад «Байгууллага» гэж сонгоод оролцогчийн тоогоо бичнэ үү.</p>
+      <p class="section-intro">Байгууллагаараа бүртгүүлбэл нэхэмжлэхийг байгууллагын нэр, регистрийн дугаараар гаргана. Бүртгэлийн маягтад «Байгууллага» гэж сонгоод оролцогчийн тоогоо бичнэ үү.</p>
     </div>
     <p><a class="btn btn-primary" href="/burtguuleh/?payer=org">Байгууллагаар бүртгүүлэх</a></p>
   </div>

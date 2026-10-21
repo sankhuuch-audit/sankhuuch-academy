@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ганзо Сургалт">
+  <rect width="64" height="64" rx="15" fill="#fff"/>
+  <rect x="20" y="15" width="9" height="34" rx="1.5" fill="#16264a"/>
+  <rect x="20" y="15" width="25" height="9" rx="1.5" fill="#16264a"/>
+  <rect x="36" y="40" width="9" height="9" rx="2" fill="#127c84"/>
+</svg>

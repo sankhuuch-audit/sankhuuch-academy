@@ -35,21 +35,13 @@
     "name": {{ site.name | json | safe }},
     "description": {{ site.description | json | safe }},
     "url": {{ site.url | json | safe }},
-    "logo": {{ '/assets/img/logo.png' | absUrl(site.url) | json | safe }},
-    "email": {{ site.email | json | safe }},
-    "telephone": {{ site.phones[0] | json | safe }},
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "604 тоот, Шинэ тэрэг плаза, Нарны зам-10, 1-р хороо",
-      "addressLocality": "Улаанбаатар",
-      "addressRegion": "Сүхбаатар дүүрэг",
-      "addressCountry": "MN"
-    },
-    "parentOrganization": {
-      "@type": "AccountingService",
-      "name": {{ site.company | json | safe }},
-      "url": {{ site.main_url | json | safe }}
-    }
+    "logo": {{ '/assets/img/logo.png' | absUrl(site.url) | json | safe }}
+    {%- if site.email %},
+    "email": {{ site.email | json | safe }}{% endif %}
+    {%- if site.phones and site.phones.length %},
+    "telephone": {{ site.phones[0] | json | safe }}{% endif %}
+    {%- if site.youtube_channel %},
+    "sameAs": [{{ site.youtube_channel | json | safe }}]{% endif %}
   }
   </script>
   {%- set gaId = site.ga_id | gaId %}

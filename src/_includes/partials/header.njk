@@ -1,10 +1,10 @@
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="/" aria-label="{{ site.name }}, нүүр хуудас">
-      <img class="brand-logo" src="/assets/img/logo.svg" width="66" height="41" alt="">
+      <img class="brand-mark" src="/assets/img/mark.svg" width="40" height="40" alt="">
       <span class="brand-text">
         <span class="brand-name">{{ site.brand }} <span class="brand-academy">{{ site.brandSub }}</span></span>
-        <span class="brand-sub">Мэргэжлийн сургалт</span>
+        <span class="brand-sub">Нягтлан бодогч, санхүүчдэд</span>
       </span>
     </a>
     <div class="header-tools">
@@ -20,7 +20,6 @@
         {%- set isCta = (item.url == "/burtguuleh/") %}
         <li{% if item.url == "/" %} class="nav-home"{% endif %}><a href="{{ item.url }}"{% if isCta %} class="nav-cta"{% endif %}{% if active %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
         {%- endfor %}
-        <li class="nav-main-site"><a href="{{ site.main_url }}/">«Санхүүч-Аудит» сайт</a></li>
       </ul>
     </nav>
   </div>
