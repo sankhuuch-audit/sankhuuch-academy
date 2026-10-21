@@ -9,6 +9,9 @@
       {%- if site.phones and site.phones.length %}
       <li><span class="cb-label">Утас</span><span>{% for p in site.phones %}<a href="{{ p | telHref }}">{{ p }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span></li>
       {%- endif %}
+      {%- if site.viber %}
+      <li><span class="cb-label">Viber</span><span><a href="{{ site.viber | viberHref }}">{{ site.viber | viberLabel }}</a></span></li>
+      {%- endif %}
       {%- if site.email %}
       <li><span class="cb-label">Имэйл</span><span><a href="mailto:{{ site.email }}">{{ site.email }}</a></span></li>
       {%- endif %}

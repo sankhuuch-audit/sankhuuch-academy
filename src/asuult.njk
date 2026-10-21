@@ -16,7 +16,7 @@ permalink: /asuult/
     </div>
     <div class="side-card ac-ask">
       <p class="side-label">Өөр асуулт байна уу?</p>
-      <p><a href="mailto:{{ site.email }}">{{ site.email }}</a> хаягаар имэйл бичнэ үү{% if site.urgent_phone %} эсвэл <a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a> утсаар холбогдоно уу{% endif %}.</p>
+      <p><a href="mailto:{{ site.email }}">{{ site.email }}</a> хаягаар имэйл бичнэ үү{% if site.viber %} эсвэл <a href="{{ site.viber | viberHref }}">Viber ({{ site.viber | viberLabel }})</a>-ээр холбогдоно уу{% endif %}{% if site.urgent_phone %} эсвэл <a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a> утсаар холбогдоно уу{% endif %}.</p>
     </div>
   </div>
 </section>

@@ -15,6 +15,13 @@ permalink: /holboo-barih/
       <p class="contact-value">{% for p in site.phones %}<a href="{{ p | telHref }}">{{ p }}</a>{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
     </div>
     {%- endif %}
+    {%- if site.viber %}
+    <div class="contact-card">
+      <p class="contact-label">Viber</p>
+      <p class="contact-value"><a href="{{ site.viber | viberHref }}">{{ site.viber | viberLabel }}</a></p>
+      <a class="link-small" href="{{ site.viber | viberHref }}">Viber-ээр бичих</a>
+    </div>
+    {%- endif %}
     {%- if site.email %}
     <div class="contact-card">
       <p class="contact-label">Имэйл</p>

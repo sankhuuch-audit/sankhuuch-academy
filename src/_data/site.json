@@ -7,10 +7,9 @@
   "description": "Нягтлан бодогч, санхүүчдэд зориулсан татвар, нийгмийн даатгал, нягтлан бодох бүртгэл, санхүүгийн тайлагналын практик сургалт. Бичлэгт хичээлийг Google Classroom-оор хүссэн цагтаа үзнэ.",
   "url": "https://academy.sankhuuch-audit.mn",
   "address": "",
-  "phones": [
-    "+976 8807 9032"
-  ],
-  "urgent_phone": "+976 8807 9032",
+  "phones": [],
+  "urgent_phone": "",
+  "viber": "+976 8807 9032",
   "email": "ganzoganzo1004@gmail.com",
   "map_url": "",
   "map_embed": "",

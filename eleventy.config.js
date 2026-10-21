@@ -92,6 +92,10 @@ export default function (eleventyConfig) {
     try { return new URL(path, base).href; } catch { return path; }
   });
   eleventyConfig.addFilter("telHref", (phone) => "tel:" + String(phone).replace(/[^\d+]/g, ""));
+  // Viber чат нээх холбоос: +976 8807 9032 → viber://chat?number=%2B97688079032
+  eleventyConfig.addFilter("viberHref", (phone) => "viber://chat?number=%2B" + String(phone).replace(/\D/g, ""));
+  // Сайт дээр харуулах хэлбэр: +976 8807 9032 → 8807 9032
+  eleventyConfig.addFilter("viberLabel", (phone) => String(phone).replace(/^\+?976\s*/, ""));
   // 150000 → 150,000₮
   eleventyConfig.addFilter("money", (n) => {
     const v = Number(n);

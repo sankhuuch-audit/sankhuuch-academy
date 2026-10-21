@@ -150,3 +150,11 @@
 /* ---------- Бүртгэл ---------- */
 #r-org { margin-top: 2px; }
 .quote-done .hero-actions { margin-top: 4px; }
+
+/* ---------- YouTube товч (толгой хэсэг) ---------- */
+.ico { flex: none; }
+.hdr-yt { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; color: #c4302b; font: 700 .86rem var(--f-head); text-decoration: none; }
+.hdr-yt span { color: var(--navy); }
+.hdr-yt:hover { border-color: #c4302b; background: #fff5f5; }
+@media (min-width: 1080px) { .header-tools { order: 3; margin-left: 10px; } }
+@media (max-width: 480px) { .hdr-yt span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .hdr-yt { padding: 8px 10px; } }

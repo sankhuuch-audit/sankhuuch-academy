@@ -49,7 +49,7 @@ permalink: /hereh-suraltsah/
         <ul class="dot-list">
           <li>Урилга ирээгүй бол имэйлийнхээ «Spam» хавтсыг шалгана уу.</li>
           <li>Өөр Google хаягаар нэвтэрсэн бол хичээл харагдахгүй. Профайл зургаа дарж бүртгүүлсэн хаягаа сонгоно уу.</li>
-          <li>Асуудал шийдэгдэхгүй бол <a href="mailto:{{ site.email }}">{{ site.email }}</a> хаягаар бичнэ үү{% if site.urgent_phone %} эсвэл <a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a> утсаар холбогдоно уу{% endif %}.</li>
+          <li>Асуудал шийдэгдэхгүй бол <a href="mailto:{{ site.email }}">{{ site.email }}</a> хаягаар бичнэ үү{% if site.viber %} эсвэл <a href="{{ site.viber | viberHref }}">Viber ({{ site.viber | viberLabel }})</a>-ээр холбогдоно уу{% endif %}{% if site.urgent_phone %} эсвэл <a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a> утсаар холбогдоно уу{% endif %}.</li>
         </ul>
       </div>
     </div>

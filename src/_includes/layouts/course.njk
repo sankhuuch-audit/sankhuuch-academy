@@ -104,7 +104,7 @@ bodyClass: page-course
       {%- endif %}
       <div class="side-card">
         <p class="side-label">Асуух зүйл байна уу?</p>
-        <p>{% if site.urgent_phone %}<a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a><br>{% endif %}{% if site.email %}<a href="mailto:{{ site.email }}">{{ site.email }}</a>{% endif %}</p>
+        <p>{% if site.viber %}<a href="{{ site.viber | viberHref }}">Viber: {{ site.viber | viberLabel }}</a><br>{% endif %}{% if site.urgent_phone %}<a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a><br>{% endif %}{% if site.email %}<a href="mailto:{{ site.email }}">{{ site.email }}</a>{% endif %}</p>
         <p><a class="link-more" href="/asuult/">Түгээмэл асуулт</a></p>
       </div>
     </aside>

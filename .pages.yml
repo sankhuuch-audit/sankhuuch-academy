@@ -190,6 +190,7 @@ content:
       - { name: url, label: Вэбсайтын хаяг, type: string }
       - { name: phones, label: "Утас (хоосон бол сайт дээр харагдахгүй)", type: string, list: true }
       - { name: urgent_phone, label: "Асуулт хүлээн авах утас (хоосон бол харагдахгүй)", type: string }
+      - { name: viber, label: "Viber дугаар (жишээ: +976 8807 9032, хоосон бол харагдахгүй)", type: string }
       - { name: email, label: "Имэйл (бүртгэл энэ хаяг руу ирнэ)", type: string }
       - { name: address, label: "Хаяг (танхимын сургалтад, хоосон бол харагдахгүй)", type: text }
       - { name: map_url, label: Газрын зургийн холбоос, type: string }

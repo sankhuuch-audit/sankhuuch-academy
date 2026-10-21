@@ -74,7 +74,7 @@ permalink: /burtguuleh/
       <h2>Баярлалаа!</h2>
       <p id="reg-done-pay">Таны бүртгэлийг хүлээн авлаа. Төлбөрийн нэхэмжлэхийг <strong data-done-email></strong> хаяг руу удахгүй илгээнэ. Төлбөр орсны дараа Google Classroom-ийн урилга мөн энэ хаяг руу ирнэ.</p>
       <p id="reg-done-soon" hidden>Таны бүртгэлийг хүлээн авлаа. Сургалт нээгдэх үед бид <strong data-done-email></strong> хаяг руу эсвэл утсаар тантай холбогдоно.</p>
-      <p class="q-note">Имэйл ирээгүй бол «Spam» хавтсаа шалгана уу.{% if site.urgent_phone %} Асуух зүйл байвал <a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a> утсаар холбогдоно уу.{% endif %}</p>
+      <p class="q-note">Имэйл ирээгүй бол «Spam» хавтсаа шалгана уу.{% if site.viber %} Асуух зүйл байвал <a href="{{ site.viber | viberHref }}">Viber ({{ site.viber | viberLabel }})</a>-ээр бичээрэй.{% endif %}{% if site.urgent_phone %} Асуух зүйл байвал <a href="{{ site.urgent_phone | telHref }}">{{ site.urgent_phone }}</a> утсаар холбогдоно уу.{% endif %}</p>
       <p class="hero-actions"><a class="btn btn-outline" href="/hereh-suraltsah/">Хэрхэн суралцах вэ</a> <a class="btn btn-outline" href="/">Нүүр хуудас</a></p>
     </div>
 
@@ -88,6 +88,7 @@ permalink: /burtguuleh/
       <div class="quote-contact">
         <p class="contact-label">Шууд холбогдох</p>
         {%- if site.phones and site.phones.length %}<p>{% for p in site.phones %}<a href="{{ p | telHref }}">{{ p }}</a>{% if not loop.last %}<br>{% endif %}{% endfor %}</p>{% endif %}
+        {%- if site.viber %}<p><a href="{{ site.viber | viberHref }}">Viber: {{ site.viber | viberLabel }}</a></p>{% endif %}
         {%- if site.email %}<p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>{% endif %}
       </div>
     </aside>

@@ -22,6 +22,7 @@
       <address>
         {%- if site.address %}<p>{{ site.address }}</p>{% endif %}
         {%- if site.phones and site.phones.length %}<p>{% for p in site.phones %}<a href="{{ p | telHref }}">{{ p }}</a>{% if not loop.last %}<br>{% endif %}{% endfor %}</p>{% endif %}
+        {%- if site.viber %}<p><a href="{{ site.viber | viberHref }}">Viber: {{ site.viber | viberLabel }}</a></p>{% endif %}
         {%- if site.email %}<p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>{% endif %}
       </address>
       {%- if site.youtube_channel %}
